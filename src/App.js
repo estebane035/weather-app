@@ -1,24 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import Details from './Components/Details';
+import Overview from './Components/Overview';
+import axios from 'axios';
+import React, {useState, useEffect} from 'react';
 
 function App() {
+  const [locationWeather, setLocationWeather] = useState({});
+
+  const getWeather = (location) => {
+    axios.get(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${location}`)
+            .then(resultLocation => {
+              axios.get(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${resultLocation.data[0].woeid}/`)
+                  .then(resultWeather => {
+                    setLocationWeather(resultWeather.data);
+                  })
+            });
+  }
+
+  useEffect(() => {
+    getWeather("san");
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className='flex flex-row text-white'>
+        <Overview locationWeather={locationWeather}/>
+        <Details  locationWeather={locationWeather}/>
+      </div>
+    </>
   );
 }
 
