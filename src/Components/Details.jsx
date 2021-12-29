@@ -3,9 +3,9 @@ import Card from './Card';
 
 const Details = () => {
     return (
-        <div className='w-2/3 bg-principal p-3 px-36 min-h-screen'>
+        <div className='flex flex-col w-2/3 bg-principal p-3 px-36 min-h-screen'>
 
-            <div className="flex-grow">
+            <main className="flex-grow">
                 <div className='flex flex-row justify-end mt-4'>
                     <button className='bg-gray-200 p-1.5 rounded-full'>C</button>
                     <button className='bg-gray-200 p-1.5 rounded-full'>F</button>
@@ -29,13 +29,12 @@ const Details = () => {
                     <Card/>
                     <Card/>
                 </div>
-            </div>
-            
+            </main>
 
-            <footer className='text-center mt-12'>
-                Creado por Estebane035 y FranciscoMarquez1
+            <footer className='mx-auto mt-12 text-center text-white-gray'>
+                Creado por <a className='underline' href='https://github.com/estebane035' target='_blank'>Esteban Bocardo</a> y <a className='underline' href='https://github.com/FranciscoMarquez1' target='_blank'>Francisco Marquez</a> - <a className='font-bold' href='https://devchallenges.io/' target='_blank'>devChallenges.io</a>
             </footer>
-
+            
         </div>
     );
 }
