@@ -8,9 +8,9 @@ function App() {
   const [locationWeather, setLocationWeather] = useState({});
 
   const getWeather = (location) => {
-    axios.get(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${location}`)
+    axios.get(`https://www.metaweather.com/api/location/search/?query=${location}`)
             .then(resultLocation => {
-              axios.get(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${resultLocation.data[0].woeid}/`)
+              axios.get(`https://www.metaweather.com/api/location/${resultLocation.data[0].woeid}/`)
                   .then(resultWeather => {
                     setLocationWeather(resultWeather.data);
                   })

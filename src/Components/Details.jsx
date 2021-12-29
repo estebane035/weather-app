@@ -7,8 +7,8 @@ const Details = () => {
 
             <main className="flex-grow">
                 <div className='flex flex-row justify-end mt-4'>
-                    <button className='bg-gray-200 p-1.5 rounded-full'>C</button>
-                    <button className='bg-gray-200 p-1.5 rounded-full'>F</button>
+                    <button className='bg-[#E7E7EB] p-1.5 rounded-full mr-4 w-10 h-10 text-[#110E3C] font-bold text-[18px]'>°C</button>
+                    <button className='bg-[#585676] p-1.5 rounded-full w-10 h-10 text-[#E7E7EB] font-bold text-[18px]'>°F</button>
                 </div>
 
                 <div className='flex flex-row mt-20 gap-6'>
