@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <div className='flex flex-row text-white'>
+      <div className='flex flex-col sm:flex-row text-white w-screen'>
         <TempUnitContext.Provider value={{tempUnit, setTempUnit}}>
             <Overview locationWeather={locationWeather}/>
             <Details  locationWeather={locationWeather}/>

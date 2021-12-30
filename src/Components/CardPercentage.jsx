@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import { TempUnitContext } from '../Context/TempUnit';
-import convertTemp from '../Helpers/convertTemp';
 
 const CardPercentage = (props) => {
     const {tempUnit, setTempUnit} = useContext(TempUnitContext);
@@ -19,8 +18,8 @@ const CardPercentage = (props) => {
                 <span className='text-xs'>100</span>
             </div>
             <div className='flex justify-center px-6'>
-                <div className="overflow-hidden h-2 text-xs flex rounded bg-pink-200 w-full">
-                    <div style={{width: `${props.percentage}%`}} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-pink-500"></div>
+                <div className="overflow-hidden h-2 text-xs flex rounded bg-[#E7E7EB] w-full">
+                    <div style={{width: `${props.percentage}%`}} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-[#FFEC65]"></div>
                 </div>
             </div>
             <div className='flex justify-end mb-6 px-6'>
