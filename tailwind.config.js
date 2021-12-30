@@ -7,6 +7,7 @@ module.exports = {
         "secondary": "#1E213A",
         "alter-gray": "#6E707A",
         "white-gray": "#A09FB1",
+        "custom-blue": "#3C47E9",
       },
       backgroundImage: {
         'heavy-cloud': "url('./../public/assets/img/HeavyCloud.png')",

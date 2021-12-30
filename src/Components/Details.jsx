@@ -46,7 +46,9 @@ const Details = (props) => {
                         </div>
                     </>
                 :
-                    "Cargando"        
+                    <div className='text-center'>
+                        Cargando
+                    </div>      
                 }
 
             </main>
