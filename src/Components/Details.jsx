@@ -27,8 +27,8 @@ const Details = (props) => {
                         </div>
 
                         <div className='grid grid-cols-2 sm:grid-cols-5 mt-20 gap-6'>
-                            {props.locationWeather.consolidated_weather.slice(1).map(x => 
-                                    <Card image={getImage(x.weather_state_name)} title={formatDate(x.applicable_date)} min={convertTemp(x.min_temp, tempUnit)} max={convertTemp(x.max_temp, tempUnit)}/>
+                            {props.locationWeather.consolidated_weather.slice(1).map((x, index) => 
+                                    <Card key={index} image={getImage(x.weather_state_name)} title={index===0 ? "Tomorrow" : formatDate(x.applicable_date)} min={convertTemp(x.min_temp, tempUnit)} max={convertTemp(x.max_temp, tempUnit)}/>
                                 )
                             }
 
