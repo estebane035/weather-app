@@ -1,8 +1,24 @@
 import React, {useContext} from 'react';
-import { TempUnitContext } from '../Context/TempUnit';
 
 const CardWindDirection = (props) => {
-    const {tempUnit, setTempUnit} = useContext(TempUnitContext);
+    const arrowMapping = {
+        "E": 0,
+        "SE": 45,
+        "ESE": 45,
+        "SSE": 45,
+        "S": 90,
+        "SW": 135,
+        "SSW": 135,
+        "WSW": 135,
+        "W": 180,
+        "NW": 225,
+        "WNW": 225,
+        "NNW": 225,
+        "N": 270,
+        "NE": 315,
+        "NNE": 315,
+        "ENE": 315
+    }
 
     return (
         <div className='bg-secondary flex-auto text-base text-center'>
@@ -13,9 +29,9 @@ const CardWindDirection = (props) => {
                 <p className='text-6xl'>{props.content}</p>
             </div>
             <div className='flex justify-center mb-8'>
-                <div className='pr-2'>
-                    Flechita
-                </div>
+            <span class="material-icons" style={{transform: `rotate(${arrowMapping[props.direction]}deg)`}}>
+                send
+            </span>
                 <span className="text-base text-[#E7E7EB] pl-2">{props.direction}</span>
             </div>
 
