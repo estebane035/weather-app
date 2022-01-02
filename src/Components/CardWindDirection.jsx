@@ -29,7 +29,7 @@ const CardWindDirection = (props) => {
                 <p className='text-6xl'>{props.content}</p>
             </div>
             <div className='flex justify-center mb-8'>
-            <span class="material-icons" style={{transform: `rotate(${arrowMapping[props.direction]}deg)`}}>
+            <span className="material-icons" style={{transform: `rotate(${arrowMapping[props.direction]}deg)`}}>
                 send
             </span>
                 <span className="text-base text-[#E7E7EB] pl-2">{props.direction}</span>

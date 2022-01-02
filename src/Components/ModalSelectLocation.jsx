@@ -2,6 +2,11 @@ import React from 'react';
 import ButtonSelectlocation from './ButtonSelectLocation';
 
 const Modalselectlocation = (props) => {
+    const handleClick = (woeid) => {
+        props.closeModal();
+        props.handleSelectLocation(woeid);
+    }
+
     return (
         <div className='bg-secondary min-h-screen absolute w-full sm:w-1/3 flex flex-col py-3 px-12'>
             <div className='text-right'>
@@ -14,9 +19,9 @@ const Modalselectlocation = (props) => {
             </div>
 
             <div className='mt-16'>
-                <ButtonSelectlocation name="London" />
-                <ButtonSelectlocation name="Barcelona" />
-                <ButtonSelectlocation name="Long Beach" />
+                {
+                    props.locations.slice(0, 5).map(location => <ButtonSelectlocation handleClick={handleClick} location={location} />)
+                }
             </div>
         </div>
     );

@@ -6,7 +6,7 @@ const getImage = ( weather ) => {
         "Heavy Rain": "assets/img/HeavyRain.png",
         "Light Cloud": "assets/img/LightCloud.png",
         "Light Rain": "assets/img/LightCloud.png",
-        "Shower": "assets/img/Shower.png",
+        "Showers": "assets/img/Shower.png",
         "Sleet": "assets/img/Sleet.png",
         "Snow": "assets/img/Snow.png",
         "Thunderstorm": "assets/img/Thunderstorm.png",

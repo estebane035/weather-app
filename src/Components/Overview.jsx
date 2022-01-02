@@ -1,35 +1,68 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import { TempUnitContext } from '../Context/TempUnit';
 import convertTemp from '../Helpers/convertTemp';
 import getImage from '../Helpers/getImage';
 import formatDate from '../Helpers/formatDate';
 import Modalselectlocation from './ModalSelectLocation';
+import { searchWeatherById, searchWeatherByLocation, isEmpty } from './../Helpers/api'
 
 const Overview = (props) => {
-    const [showModalSearch, setShowModalSearch] = useState(false)
+    const [showModalSearch, setShowModalSearch] = useState(false);
+    const [locations, setLocations] = useState([]);
     const {tempUnit, setTempUnit} = useContext(TempUnitContext);
 
-    let tempToday
+    let tempToday;
     
-    if(props.locationWeather.consolidated_weather){
+    if(!isEmpty(props.locationWeather)){
         tempToday = props.locationWeather.consolidated_weather[0];
     }
+
 
     const switchModal = () => {
         setShowModalSearch(!showModalSearch);
     }
+    
+    const helperSearchAndSetLocation = (search) => {
+        searchWeatherByLocation(search)
+        .then(resultLocation => {
+            if(resultLocation.data.length > 1){
+                setLocations(resultLocation.data);
+                setShowModalSearch(true);
+            } else{
+                handleSelectLocation(resultLocation.data[0].woeid);
+            }
+        });
+    }
+
+    const handleSelectLocation = (woeid) => {
+        searchWeatherById(woeid)
+        .then(resultWeather => {
+            props.setLocationWeather(resultWeather.data);
+        });
+    }
+
+    const handleKeyUp = (e) => {
+        if (e.keyCode == 13){
+            helperSearchAndSetLocation(e.target.value);
+        }
+    }
+    
+    useEffect(() => {
+        helperSearchAndSetLocation("Mexico");
+    }, [])
+    
 
     return (
         <>
-            { showModalSearch && <Modalselectlocation closeModal={switchModal}/> }
+            { showModalSearch && <Modalselectlocation locations={locations} handleSelectLocation={handleSelectLocation} closeModal={switchModal}/> }
             <div className='flex flex-col w-full sm:w-1/3 bg-secondary min-h-screen py-3'>
                 {
                     props.locationWeather.consolidated_weather 
                     ?
                     <div className='flex-grow'>
                         <div className='flex justify-between mt-4 px-12'>
-                            <input className='bg-alter-gray placeholder-white px-2 shadow-md shadow-[#00000054]' type="text" placeholder='Search place...'/>
-                            <button onClick={switchModal} className='bg-gray-200 p-1.5 rounded-full'>C</button>
+                            <input onKeyUp={handleKeyUp} className='bg-alter-gray placeholder-white px-2 shadow-md shadow-[#00000054]' type="text" placeholder='Search place...'/>
+                            <button onClick={() => {helperSearchAndSetLocation("Mexico")}} className='bg-[#585676] rounded-full w-10 h-10 font-bold text-[18px]'><i className="material-icons text-2xl">gps_fixed</i></button>
                         </div>
 
                         <div className='flex mt-20 justify-center'>
