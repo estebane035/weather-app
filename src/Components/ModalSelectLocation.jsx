@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import ButtonSelectlocation from './ButtonSelectLocation';
+import { ActiveWoeidContext } from '../Context/ActiveWoeid';
+import { searchWeatherByLocation } from '../Helpers/api';
 
 const Modalselectlocation = (props) => {
+    const [search, setSearch] = useState("");
+    const {activeWoeid, setActiveWoeid} = useContext(ActiveWoeidContext);
+
     const handleClick = (woeid) => {
         props.closeModal();
-        props.handleSelectLocation(woeid);
+        setActiveWoeid(woeid);
+    }
+
+    const searchAndSelectLocation = (search) => {
+        searchWeatherByLocation(search)
+        .then(resultLocation => {
+            if(resultLocation.data.length > 1){
+                props.handleLocations(resultLocation.data);
+            } else{
+                handleClick(resultLocation.data[0].woeid);
+            }
+        });
+    }
+
+    const handleKeyUp = (e) => {
+        if (e.keyCode == 13){
+            searchAndSelectLocation(search);
+        }
+    }
+
+    const clickSearch = () =>{
+        searchAndSelectLocation(search);
     }
 
     return (
@@ -14,8 +40,8 @@ const Modalselectlocation = (props) => {
             </div>
             <div className='flex flex-row mt-12 h-12'>
                 <label className="material-icons text-[#616475] absolute translate-x-4 pt-3">search</label>
-                <input className='form-input mr-2 text-[#616475] placeholder-[#616475] flex-auto bg-transparent border border-white pl-14 pr-4 w-7/12' autoComplete='off' type="text" placeholder='Search location' name='search'/>
-                <button className='ml-2 flex-auto bg-custom-blue'>Search</button>
+                <input className='form-input mr-2 text-[#616475] placeholder-[#616475] flex-auto bg-transparent border border-white pl-14 pr-4 w-7/12' onKeyUp={handleKeyUp} onChange={e => setSearch(e.target.value)} autoComplete='off' type="text" placeholder='Search location' name='search'/>
+                <button className='ml-2 flex-auto bg-custom-blue' onClick={clickSearch}>Search</button>
             </div>
 
             <div className='mt-16'>
