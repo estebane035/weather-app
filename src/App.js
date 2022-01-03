@@ -19,12 +19,11 @@ function App() {
           setLocationWeather(resultWeather.data);
       });
     }
-    
   }, [activeWoeid])
 
   return (
     <>
-      <div className='flex flex-col sm:flex-row text-white w-screen'>
+      <div className='flex flex-col sm:flex-row text-white'>
         <TempUnitContext.Provider value={{tempUnit, setTempUnit}}>
           <ActiveWoeidContext.Provider value={{activeWoeid, setActiveWoeid}}>
             <Overview locationWeather={locationWeather}/>
