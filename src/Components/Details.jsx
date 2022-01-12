@@ -2,11 +2,9 @@ import React, {useContext} from 'react';
 import Card from './Card';
 import { TempUnitContext } from '../Context/TempUnit';
 import ButtonTempUnit from './ButtonTempUnit';
-import getImage from '../Helpers/getImage';
-import convertTemp from '../Helpers/convertTemp';
+import { getImage, formatDate, convertTemp } from '../Helpers/helpers';
 import CardPercentage from './CardPercentage';
 import CardWindDirection from './CardWindDirection';
-import formatDate from '../Helpers/formatDate';
 
 const Details = (props) => {
     const {tempUnit, setTempUnit} = useContext(TempUnitContext);

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { TempUnitContext } from '../Context/TempUnit';
-import convertTemp from '../Helpers/convertTemp';
+import { convertTemp } from '../Helpers/helpers';
 
 const Card = (props) => {
     const {tempUnit, setTempUnit} = useContext(TempUnitContext);

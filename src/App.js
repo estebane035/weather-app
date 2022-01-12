@@ -4,7 +4,7 @@ import Overview from './Components/Overview';
 import React, {useState, useEffect} from 'react';
 import { TempUnitContext } from './Context/TempUnit';
 import { ActiveWoeidContext } from './Context/ActiveWoeid';
-import {searchWeatherById} from './Helpers/api'
+import { searchWeatherById } from './Helpers/helpers'
 
 function App() {
   const [locationWeather, setLocationWeather] = useState({});

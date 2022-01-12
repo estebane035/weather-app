@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import ButtonSelectlocation from './ButtonSelectLocation';
 import { ActiveWoeidContext } from '../Context/ActiveWoeid';
-import { searchWeatherByLocation } from '../Helpers/api';
+import { searchWeatherByLocation } from '../Helpers/helpers';
 
 const Modalselectlocation = (props) => {
     const [search, setSearch] = useState("");
